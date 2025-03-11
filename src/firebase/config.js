@@ -1,20 +1,21 @@
+// Import Firebase SDKs
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";  // ✅ Import Firestore properly
+import { getStorage } from "firebase/storage";      // ✅ Import Firebase Storage
 
-export const firebaseConfig = {
-   apiKey: import.meta.env.VITE_API_KEY,
-   authDomain: import.meta.env.VITE_AUTH_DOMAIN,
-   projectId: import.meta.env.VITE_PROJECT_ID,
-   storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
-   messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
-   appId: import.meta.env.VITE_APP_ID,
+// Firebase configuration
+const firebaseConfig = {
+  
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app);
-export default app;
+const analytics = getAnalytics(app);
+const db = getFirestore(app);     // ✅ Firestore initialized correctly
+const storage = getStorage(app);  // ✅ Firebase Storage initialized correctly
+const auth = getAuth(app);        // ✅ Firebase Auth initialized correctly
+
+// Export Firebase services
+export { db, storage, auth };
